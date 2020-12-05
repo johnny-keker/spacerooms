@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FlashLight : MonoBehaviour
 {
-    private bool _active = true;
+    private bool _active = false;
     private Light _light;
 
     // Start is called before the first frame update
