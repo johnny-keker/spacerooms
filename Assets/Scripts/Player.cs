@@ -20,7 +20,7 @@ public class Player : MonoBehaviour
         if (other.tag == "TERMINAL")
         {
             _terminal = other.gameObject.GetComponent<Terminal>();
-            _canvas.ToggleInteractWithTerminalVisibility();
+            _canvas.SetInteractWithTerminalVisibility(true);
         }
     }
 
@@ -29,7 +29,7 @@ public class Player : MonoBehaviour
         if (other.tag == "TERMINAL")
         {
             _terminal = null;
-            _canvas.ToggleInteractWithTerminalVisibility();
+            _canvas.SetInteractWithTerminalVisibility(false);
         }
     }
 

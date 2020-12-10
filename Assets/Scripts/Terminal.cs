@@ -1,10 +1,12 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Terminal : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public Action OnUse;
+
     void Start()
     {
         
@@ -12,7 +14,7 @@ public class Terminal : MonoBehaviour
 
     public void Use()
     {
-        Debug.Log("Terminal used");
+        OnUse();
     }
 
     // Update is called once per frame

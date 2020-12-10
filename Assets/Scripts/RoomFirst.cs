@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Level : MonoBehaviour
+public class RoomFirst : MonoBehaviour
 {
     public GameObject Sensor;
     public GameObject Door;
