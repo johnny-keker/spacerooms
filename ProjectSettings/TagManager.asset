@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - CLONE
+  - TERMINAL
+  - CANVAS
   layers:
   - Default
   - TransparentFX
@@ -14,7 +16,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - USING
   - 
   - 
   - 

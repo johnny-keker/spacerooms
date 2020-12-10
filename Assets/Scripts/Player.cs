@@ -7,12 +7,31 @@ public class Player : MonoBehaviour
     public GameObject ClonePrefab;
 
     private GameObject _clone;
+    private Terminal _terminal;
+    private UICanvas _canvas;
 
     void Start()
     {
-        
+        _canvas = GameObject.FindGameObjectWithTag("CANVAS").GetComponent<UICanvas>();
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "TERMINAL")
+        {
+            _terminal = other.gameObject.GetComponent<Terminal>();
+            _canvas.ToggleInteractWithTerminalVisibility();
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "TERMINAL")
+        {
+            _terminal = null;
+            _canvas.ToggleInteractWithTerminalVisibility();
+        }
+    }
 
     void Update()
     {
@@ -29,5 +48,8 @@ public class Player : MonoBehaviour
                 _clone = null;
             }
         }
+
+        if (Input.GetKeyDown(KeyCode.E))
+            if (_terminal != null) _terminal.Use();
     }
 }

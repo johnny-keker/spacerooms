@@ -24,7 +24,6 @@ public class Sensor : MonoBehaviour
         _objectsInside++;
         if (other.tag == "CLONE")
         {
-            Debug.Log("Clone inside");
             _clone = other.gameObject;
             _cloneInside = true;
             if (!_playerInside)
@@ -47,7 +46,6 @@ public class Sensor : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        Debug.Log("ON EXIT");
         if (--_objectsInside == 0)
         {
             _light.color = Color.red;
