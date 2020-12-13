@@ -5,9 +5,11 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public GameObject ClonePrefab;
+    public bool HasKey = false;
 
     private GameObject _clone;
     private Terminal _terminal;
+    private Chest _chest;
     private UICanvas _canvas;
 
     void Start()
@@ -22,6 +24,12 @@ public class Player : MonoBehaviour
             _terminal = other.gameObject.GetComponent<Terminal>();
             _canvas.SetInteractWithTerminalVisibility(true);
         }
+
+        if (other.tag == "CHEST")
+        {
+            _chest = other.gameObject.GetComponent<Chest>();
+            _canvas.SetInteractWithTerminalVisibility(true);
+        }
     }
 
     private void OnTriggerExit(Collider other)
@@ -29,6 +37,12 @@ public class Player : MonoBehaviour
         if (other.tag == "TERMINAL")
         {
             _terminal = null;
+            _canvas.SetInteractWithTerminalVisibility(false);
+        }
+
+        if (other.tag == "CHEST")
+        {
+            _chest = null;
             _canvas.SetInteractWithTerminalVisibility(false);
         }
     }
@@ -50,6 +64,9 @@ public class Player : MonoBehaviour
         }
 
         if (Input.GetKeyDown(KeyCode.E))
+        {
             if (_terminal != null) _terminal.Use();
+            if (_chest != null) _chest.Use();
+        }
     }
 }
