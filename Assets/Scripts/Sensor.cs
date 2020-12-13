@@ -11,14 +11,33 @@ public class Sensor : MonoBehaviour
     private bool _cloneInside = false;
     private bool _playerInside = false;
 
+    private Color _activeColor = Color.green;
+    private Color _nonActiveColor = Color.red;
+
     public Action CallbackOnEnter;
     public Action CallbackOnLeave;
+
+    public bool PlayerInside => _playerInside;
+
+    public void OverrideColor(Color color)
+    {
+        _activeColor = color;
+        _nonActiveColor = color;
+        _light.color = color;
+    }
 
     // Start is called before the first frame update
     void Start()
     {
         _light = transform.GetChild(1).gameObject.GetComponent<Light>();
     }
+
+    public void Setup()
+    {
+        if (_light == null)
+            _light = transform.GetChild(1).gameObject.GetComponent<Light>();
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         _objectsInside++;
@@ -28,17 +47,18 @@ public class Sensor : MonoBehaviour
             _cloneInside = true;
             if (!_playerInside)
             {
-                _light.color = Color.green;
+                _light.color = _activeColor;
                 CallbackOnEnter();
             }
             return;
         }
         else
         {
+            Debug.Log("Player inside");
             _playerInside = true;
             if (!_cloneInside)
             {
-                _light.color = Color.green;
+                _light.color = _activeColor;
                 CallbackOnEnter();
             }
         }
@@ -48,11 +68,14 @@ public class Sensor : MonoBehaviour
     {
         if (--_objectsInside == 0)
         {
-            _light.color = Color.red;
+            _light.color = _nonActiveColor;
             if (other.tag == "CLONE")
                 _cloneInside = false;
             else
+            {
+                Debug.Log("Player leave");
                 _playerInside = false;
+            }
             CallbackOnLeave();
         }
     }
@@ -63,7 +86,7 @@ public class Sensor : MonoBehaviour
         _cloneInside = false;
         if (--_objectsInside == 0)
         {
-            _light.color = Color.red;
+            _light.color = _nonActiveColor;
             CallbackOnLeave();
         }
     }
