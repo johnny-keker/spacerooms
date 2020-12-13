@@ -13,8 +13,7 @@ public class Terminal : MonoBehaviour
 
     void Start()
     {
-        _greenScreen = transform.parent.transform.GetChild(4).gameObject;
-        _redScreen = transform.parent.transform.GetChild(5).gameObject;
+
     }
 
     public void Setup()

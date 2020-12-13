@@ -33,6 +33,11 @@ public class CloneController : MonoBehaviour
         }
     }
 
+    private void OnDestroy()
+    {
+        _canvas.SetInteractWithTerminalCloneVisibility(false);
+    }
+
     void Update()
     {
         transform.Translate(Vector3.right * Input.GetAxis("CloneVertical") * Time.deltaTime * speed);

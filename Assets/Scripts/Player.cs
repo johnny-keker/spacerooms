@@ -19,7 +19,7 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "TERMINAL")
+        if (other.tag == "TERMINAL" || other.tag == "TERMINAL_END")
         {
             _terminal = other.gameObject.GetComponent<Terminal>();
             _canvas.SetInteractWithTerminalVisibility(true);
@@ -34,7 +34,7 @@ public class Player : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.tag == "TERMINAL")
+        if (other.tag == "TERMINAL" || other.tag == "TERMINAL_END")
         {
             _terminal = null;
             _canvas.SetInteractWithTerminalVisibility(false);
@@ -68,5 +68,8 @@ public class Player : MonoBehaviour
             if (_terminal != null) _terminal.Use();
             if (_chest != null) _chest.Use();
         }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+            _canvas.ToggleControls();
     }
 }

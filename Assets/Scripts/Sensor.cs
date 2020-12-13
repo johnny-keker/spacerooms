@@ -54,7 +54,6 @@ public class Sensor : MonoBehaviour
         }
         else
         {
-            Debug.Log("Player inside");
             _playerInside = true;
             if (!_cloneInside)
             {
@@ -72,10 +71,7 @@ public class Sensor : MonoBehaviour
             if (other.tag == "CLONE")
                 _cloneInside = false;
             else
-            {
-                Debug.Log("Player leave");
                 _playerInside = false;
-            }
             CallbackOnLeave();
         }
     }

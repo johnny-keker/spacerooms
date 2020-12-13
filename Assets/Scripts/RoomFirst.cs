@@ -32,6 +32,7 @@ public class RoomFirst : MonoBehaviour
         _door2.GetComponent<Door>().Setup();
 
         _terminal = Instantiate(Terminal, new Vector3(-14f, 2f, 3.5f), Quaternion.AngleAxis(90f, new Vector3(0, 1, 0))).transform.GetChild(0).GetComponent<Terminal>();
+        _terminal.Setup();
         _terminal.OnUse = OnTerminalUse;
     }
 

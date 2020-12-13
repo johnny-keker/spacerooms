@@ -9,6 +9,10 @@ TagManager:
   - CANVAS
   - SERVER
   - CHEST
+  - GATES
+  - SPACESHIP
+  - SPACESHIP_MODEL
+  - TERMINAL_END
   layers:
   - Default
   - TransparentFX

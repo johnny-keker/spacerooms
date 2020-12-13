@@ -27,6 +27,8 @@ public class RoomSecond : MonoBehaviour
 
         _chest = Instantiate(Chest, new Vector3(44.3f, 1.5f, -10.0f), Quaternion.identity).transform.GetChild(0).GetComponent<Chest>();
 
+        _terminal1.Setup();
+        _terminal2.Setup();
         _terminal1.OnUse = () => StartCoroutine(Terminal1());
         _terminal2.OnUse = () => StartCoroutine(Terminal2());
         _chest.OnUse = OnChestUse;

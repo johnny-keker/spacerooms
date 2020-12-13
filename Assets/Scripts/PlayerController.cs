@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour
         characterController.transform.eulerAngles = lastMouse;
         lastMouse = Input.mousePosition;
 
+        if (!characterController.enabled) return;
         moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0.0f, Input.GetAxis("Vertical"));
         moveDirection *= speed;
         moveDirection = transform.worldToLocalMatrix.inverse * moveDirection;
